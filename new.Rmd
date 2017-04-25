@@ -1,0 +1,119 @@
+---
+title: "new"
+author: "huiyingmiao"
+date: "2017年4月24日"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## R Markdown
+
+
+
+
+```{r}
+library(tidyverse)
+#> Loading tidyverse: ggplot2
+#> Loading tidyverse: tibble
+#> Loading tidyverse: tidyr
+#> Loading tidyverse: readr
+#> Loading tidyverse: purrr
+#> Loading tidyverse: dplyr
+#> Conflicts with tidy packages ----------------------------------------------
+#> filter(): dplyr, stats
+#> lag():    dplyr, stats
+```
+```{r }
+ggplot2::mpg
+```
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+```{r}
+?mpg
+```
+```{r}
+ggplot(data = mpg) + 
+     geom_point(mapping = aes(x = hwy, y = cyl))
+```
+
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = class, y = drv))
+```
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy, color = class))
+```
+```{r}
+ggplot(data = mpg) + 
+     geom_point(mapping = aes(x = displ, y = hwy, size = class))
+```
+```{r}
+# Left
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
+
+# Right
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, shape = class))
+```
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
+```
+
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
+```
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy, color = year))
+```
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy, color = year,size=year))
+```
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy, color = year,stroke=year))
+```
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy,stroke=year))
+```
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy,stroke=year),colour = "pink", size = 4,stroke=8)
+```
+
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy,stroke=year),colour = "pink", size = 1,stroke=1)
+```
+
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy,stroke=year),shape = 21, colour = "black", fill = "white", size = 5, stroke = 5)
+```
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy,stroke=year),shape = 21, colour = "white", fill = "purple", size = 2, stroke = 2)
+```
+
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy),shape = 21, colour = "white", fill = "purple", size = 2, stroke = 2)
+```
+```{r}
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy,colour = displ < 5))
+```
