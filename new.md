@@ -86,3 +86,11 @@ huiyingmiao
 
 ![](new_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
 ![](new_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
+![](new_files/figure-html/unnamed-chunk-22-1.png)<!-- -->
+
+![](new_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
+![](new_files/figure-html/unnamed-chunk-24-1.png)<!-- -->
+![](new_files/figure-html/unnamed-chunk-25-1.png)<!-- -->
+
+![](new_files/figure-html/unnamed-chunk-26-1.png)<!-- -->
+
