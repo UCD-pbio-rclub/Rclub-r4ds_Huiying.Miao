@@ -27,20 +27,25 @@ library(tidyverse)
 ```
 
 ## R Markdown
-## 3.6 Geometric objects
+
+## 3.6 Geometric objects  
 ### left
 ```{r}
 ggplot(data = mpg) + 
   geom_freqpoly(mapping = aes(x = hwy))
 ```
+
 ### right
 ```{r}
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy, group = drv))
 ```
-## 3.6.1 Exercises
+
+## 3.6.1 Exercises  
+
 ###1. What geom would you use to draw a line chart? A boxplot? A histogram? An area chart?
 geom_smooth(),geom_density(),geom_freqpoly();geom_boxplot();geom_histogram();geom_area(),geom_polygon().
+
 ###2.  
 ```{r}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
@@ -189,6 +194,7 @@ ggplot(data = diamonds) +
 _fill=color_
 
 ## 3.8.1 Exercises   
+
 ### 1.What is the problem with this plot? How could you improve it?
 
 ```{r}
@@ -273,7 +279,7 @@ bar<-ggplot(data = diamonds) +
 ```
 
 
-## 3.What’s the difference between coord_quickmap() and coord_map()?  
+### 3.What’s the difference between coord_quickmap() and coord_map()?  
 
 
 nz <- map_data("nz")
@@ -287,7 +293,7 @@ ggplot(nz, aes(long, lat, group = group)) +
 _first you should download the data for the map~~_
 _coord_quickmap() is very similar to coord_map() but coord_quickmap() preserves straight lines in what should be a spherical plane. So, basically, the earth is shperical and coord_map() preserves that without plotting any straight lines. coord_quickmap() adds those lines._
 
-## 4.What does the plot below tell you about the relationship between city and highway mpg? Why is coord_fixed() important? What does geom_abline() do?
+### 4.What does the plot below tell you about the relationship between city and highway mpg? Why is coord_fixed() important? What does geom_abline() do?
 
 **abline() will render the slope of x,y**  
 **fixed() can adjust the aspect ratio.The default is 1/2.**
@@ -300,17 +306,15 @@ ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
 ```
 
 
-```{r}
+
 install.packages("readxl")
 library(readxl)
 
 ```
 
-```{r}
-library(readxl)
-```
 
-```{r}
+library(readxl)
+
 datasets <- read_excel("Users / mm / Desktop/GS data.xlsx")
 
 ```
