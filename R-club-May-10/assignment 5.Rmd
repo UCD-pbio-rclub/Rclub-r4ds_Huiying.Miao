@@ -1,0 +1,18 @@
+---
+title: "assignment 5"
+author: "huiyingmiao"
+date: "May 8, 2017"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r}
+nycflights13::flights
+```
