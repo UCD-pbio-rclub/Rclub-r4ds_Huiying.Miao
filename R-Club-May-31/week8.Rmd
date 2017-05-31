@@ -1,0 +1,213 @@
+---
+title: "week8"
+author: "huiyingmiao"
+date: "May 30, 2017"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(ggplot2)
+```
+
+#7 go on
+```{r}
+ggplot(data=faithful)+
+  geom_point(mapping=aes(x=eruptions,y=waiting))
+```
+```{r}
+ggplot(data = faithful, mapping = aes(x = eruptions)) + 
+  geom_freqpoly(binwidth = 0.25)
+```
+```{r}
+ggplot(faithful,aes(eruptions))+
+  geom_freqpoly(binwidth=0.25)
+```
+the later is more concisely~
+
+```{r}
+library(tidyverse)
+diamonds%>%
+  count(cut,clarity)%>%
+  ggplot(aes(clarity,cut,fill=n))+
+  geom_tile()
+```
+
+# 10 Tibbles
+
+```{r}
+library(tidyverse)
+```
+
+**coerce a data frame to a tibble**
+```{r}
+as_tibble(iris)
+```
+**create a tibble**
+```{r}
+tibble(
+  x=1:5,
+  y=1,
+  z=x^2+y
+)
+```
+**tibble never converts strings to factors!**
+
+**To refer to non-syntactic names(not start with a letter), you need to surround them with backticks, `:**
+
+
+```{r}
+tb<-tibble(
+`:)`="smile",
+` `="space",
+`2000`="number"
+)
+tb
+```
+
+** tribble(), short for transposed tibble.they start with ~, and entries are separated by commas.**
+```{r}
+tribble(
+  ~x,~y,~z,
+  #---/---
+  "a",1,2,
+  "b",3,4
+)
+```
+
+#####tibble vs data frame
+
+```{r}
+ttb<-tibble(
+  a=1:12,
+  b=a^3+6,
+  c=log(a),
+  d=2.2,
+  e=a*b-c+d,
+  f=1,
+  g=6,
+  h=2,
+  i=1,
+  j=66,
+  k=11,
+  l=66
+)
+ttb%>%
+  print(n=12,width=Inf) #why don't output 12 rows....
+```
+```{r}
+ttb
+```
+```{r}
+class(ttb)
+```
+
+** pull out a single variable.**
+**$ and [[. [[ can extract by name or position; $ only extracts by name but is a little less typing.**
+
+```{r}
+#extract by name
+ttb$a
+ttb[["a"]]
+#extract by position
+ttb[[2]]
+```
+```{r}
+class(as_data_frame(ttb))
+```
+
+##10.5 Exercises
+
+### 1 How can you tell if an object is a tibble? (Hint: try printing mtcars, which is a regular data frame).
+```{r}
+mtcars 
+```
+
+```{r}
+class(mtcars)# tibble has "tbl_df"     "tbl"    
+```
+```{r}
+class(as_tibble(mtcars))
+```
+
+
+### 2 Compare and contrast the following operations on a data.frame and equivalent tibble. What is different? Why might the default data frame behaviours cause you frustration?
+
+**tibbles are more strict: they never do partial matching**
+
+```{r}
+df <- data.frame(abc = 1, xyz = "a")
+df$x #partial matching
+df[, "xyz"] # returns a vector, rather than a data frame
+
+df[, c("abc", "xyz")]
+```
+
+
+
+
+
+
+
+```{r}
+tbdf<-as_tibble(df)
+tbdf$x
+tbdf[, "xyz"]
+tbdf[, c("abc", "xyz")]
+```
+### 3 If you have the name of a variable stored in an object, e.g. var <- "mpg", how can you extract the reference variable from a tibble?
+
+use var[["mpg"]] or var$mpg
+
+### 4 Practice referring to non-syntactic names in the following data frame by:
+
+1 Extracting the variable called 1.
+
+2 Plotting a scatterplot of 1 vs 2.
+
+3 Creating a new column called 3 which is 2 divided by 1.
+
+4 Renaming the columns to one, two and three.
+
+```{r}
+annoying <- tibble(
+  `1` = 1:10,
+  `2` = `1` * 2 + rnorm(length(`1`))
+)
+#extract variable 1
+annoying[["1"]]
+annoying$`2`
+#plot
+ggplot(annoying, aes(x=`1`, y=`2`))+
+  geom_point()
+
+annoying%>%
+  mutate(`3`=`2`/`1`)
+#creat a new colunm
+annoying[["3"]]<-annoying[["2"]]/annoying[["1"]]
+#rename the columns
+annoying<-rename(annoying,one=`1`,two=`2`,three=`3`)
+annoying
+ 
+
+```
+
+### 5 What does tibble::enframe() do? When might you use it?
+*enframe() converts named atomic vectors or lists to two-column data frames. For unnamed vectors, the natural sequence is used as name column.*
+
+*deframe() converts two-column data frames to a named vector or list, using the first column as name and the second column as value.*
+
+```{r}
+tibble::enframe(c(x=1,y=2,h=3)) #named vector
+tibble::enframe(c(1,6,3)) #unamed vector
+```
+
+### 6 What option controls how many additional column names are printed at the footer of a tibble?
+print.tbl_df
+
+print(x, ..., n = NULL, width = NULL, n_extra = NULL)
+
